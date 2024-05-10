@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
   const { signIn, signInWithGoogle, user, loading } = useAuth();
+  const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,7 +29,7 @@ const Login = () => {
       const result = await signIn(email, password);
       console.log(result?.user);
       toast.success("Sign in successful");
-      navigate("/");
+      navigate(location.state || "/");
     } catch (err) {
       console.log(err);
       toast.error(err?.message);
@@ -41,7 +42,7 @@ const Login = () => {
       const result = await signInWithGoogle();
       console.log(result?.user);
       toast.success("Sing In Successful");
-      navigate("/");
+      navigate(location.state || "/");
     } catch (err) {
       console.log(err);
       toast.error(err?.message);

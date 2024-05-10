@@ -7,11 +7,14 @@ import NeedVolunteer from "../pages/NeedVolunteer";
 import AddVolunteerPost from "../pages/AddVolunteerPost";
 import ManageMyPost from "../pages/ManageMyPost";
 import MyVolunteerRequestedPost from "../pages/MyVolunteerRequestedPost";
+import ErrorPage from "../pages/ErrorPage";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -31,15 +34,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-volunteer-post",
-        element: <AddVolunteerPost />,
+        element: (
+          <PrivateRoute>
+            <AddVolunteerPost />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/manage-my-post",
-        element: <ManageMyPost />,
+        element: (
+          <PrivateRoute>
+            <ManageMyPost />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/my-volunteer-requested-post",
-        element: <MyVolunteerRequestedPost />,
+        element: (
+          <PrivateRoute>
+            <MyVolunteerRequestedPost />
+          </PrivateRoute>
+        ),
       },
     ],
   },

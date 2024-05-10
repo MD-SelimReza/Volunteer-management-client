@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 
 const Register = () => {
   const [showPass, setShowPass] = useState(false);
   const { createUser, updateUserProfile, user, loading, setUser } = useAuth();
+  const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const Register = () => {
       await updateUserProfile(name, photo);
       setUser({ ...result?.user, photoURL: photo, displayName: name });
       toast.success("Sign up successful");
-      navigate("/");
+      navigate(location.state || "/");
     } catch (err) {
       console.log(err);
       toast.error(err?.message);

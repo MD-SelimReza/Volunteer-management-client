@@ -54,7 +54,7 @@ const Navbar = () => {
           }
           to="/login"
         >
-          Login
+          Sing in
         </NavLink>
       )}
     </>
