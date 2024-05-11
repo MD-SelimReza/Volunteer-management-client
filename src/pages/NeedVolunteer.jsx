@@ -1,5 +1,13 @@
+import Banner from "../components/Banner";
+import VolunteerPostDetails from "../components/VolunteerPostDetails";
+
 const NeedVolunteer = () => {
-  return <div>This is all volunteer page</div>;
+  return (
+    <div>
+      <Banner />
+      <VolunteerPostDetails />
+    </div>
+  );
 };
 
 export default NeedVolunteer;

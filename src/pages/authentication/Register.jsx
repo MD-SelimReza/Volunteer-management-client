@@ -25,6 +25,12 @@ const Register = () => {
 
   const handleSignUp = async (data) => {
     const { name, email, photo, password } = data;
+    if (!/^(?=.*[a-z])(?=.*[A-Z])[A-Za-z]{6,}$/.test(password)) {
+      toast.error(
+        "Password must be at least 6 characters long and contain at least one uppercase and lowercase letter"
+      );
+      return;
+    }
     try {
       const result = await createUser(email, password);
       await updateUserProfile(name, photo);
@@ -35,7 +41,7 @@ const Register = () => {
       console.log(err);
       toast.error(err?.message);
     }
-    console.log({ name, email, photo, password });
+    // console.log({ name, email, photo, password });
   };
 
   if (user || loading) return;
@@ -134,9 +140,9 @@ const Register = () => {
             className=" absolute right-3 bottom-3 cursor-pointer"
           >
             {showPass ? (
-              <FaEye className="size-5" />
+              <FaEye className="size-5 text-white" />
             ) : (
-              <FaEyeSlash className="size-5" />
+              <FaEyeSlash className="size-5 text-white" />
             )}
           </p>
         </div>

@@ -6,11 +6,11 @@ const Root = () => {
   return (
     <div>
       {/* navbar */}
-      <div>
+      <div className="h-16">
         <Navbar />
       </div>
       {/* outlet */}
-      <div className="min-h-[calc(100vh-285px)] py-10">
+      <div className="min-h-[calc(100vh-335px)]">
         <Outlet />
       </div>
       {/* footer */}

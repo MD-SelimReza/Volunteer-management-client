@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const [toggle, setToggle] = useState(false);
 
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
@@ -60,28 +61,34 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-[#3A415A] text-white shadow-sm">
+    <div className="navbar fixed top-0 z-20 bg-[#3A415A] text-white shadow-sm">
       <div className="flex-1">
         <Link to="/" className="flex gap-2 items-center">
           <img className="w-auto h-7" src="" alt="" />
-          <span className="font-bold text-2xl text-emerald-400">
+          <span className="font-bold text-lg md:text-xl lg:text-2xl text-emerald-400">
             <span>Volunteer</span> Management
           </span>
         </Link>
       </div>
       <div className="flex-none">
-        <ul className="menu menu-horizontal px-1 text-lg font-medium uppercase gap-5">
+        <ul className="menu menu-horizontal px-1 text-xs md:text-sm lg:text-lg font-medium uppercase gap-3 lg:gap-5">
           {navLinks}
         </ul>
 
         {user && (
-          <div className="dropdown dropdown-end z-50 ml-3">
+          <div
+            onClick={() => setTheme(!toggle)}
+            className="dropdown dropdown-end z-50 ml-3"
+          >
             <div
               tabIndex={0}
               role="button"
               className="btn btn-ghost btn-circle avatar"
             >
-              <div title={user?.displayName} className="w-10 rounded-full">
+              <div
+                title={user?.displayName}
+                className="lg:w-10 w-6 rounded-full"
+              >
                 <img
                   referrerPolicy="no-referrer"
                   alt="Profile"
@@ -117,7 +124,7 @@ const Navbar = () => {
             </ul>
           </div>
         )}
-        <label onChange={toggleTheme} className="swap swap-rotate ml-3">
+        <label onChange={toggleTheme} className="swap swap-rotate ml-1 lg:ml-3">
           {/* this hidden checkbox controls the state */}
           <input
             type="checkbox"
@@ -127,7 +134,7 @@ const Navbar = () => {
 
           {/* sun icon */}
           <svg
-            className="swap-off fill-current w-10 h-10"
+            className="swap-off fill-current lg:size-10 size-6"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
           >
@@ -136,7 +143,7 @@ const Navbar = () => {
 
           {/* moon icon */}
           <svg
-            className="swap-on fill-current w-10 h-10"
+            className="swap-on fill-current lg:size-10 size-6"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
           >

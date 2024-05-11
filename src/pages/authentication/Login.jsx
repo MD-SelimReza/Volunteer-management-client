@@ -25,6 +25,12 @@ const Login = () => {
 
   const handleSignIn = async (data) => {
     const { email, password } = data;
+    if (!/^(?=.*[a-z])(?=.*[A-Z])[A-Za-z]{6,}$/.test(password)) {
+      toast.error(
+        "Password must be at least 6 characters long and contain at least one uppercase and lowercase letter"
+      );
+      return;
+    }
     try {
       const result = await signIn(email, password);
       console.log(result?.user);
@@ -78,12 +84,13 @@ const Login = () => {
           </label>
           <input
             type="email"
+            id="email"
             placeholder="Email"
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
             {...register("email", { required: true })}
           />
           {errors.email && (
-            <span className="text-red-500">This field is required</span>
+            <span className="text-red-500">The email field is required</span>
           )}
         </div>
 
@@ -97,22 +104,25 @@ const Login = () => {
 
           <div className="relative">
             <input
+              id="password"
               type={showPass ? "text" : "password"}
               placeholder="Password"
               className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
               {...register("password", { required: true })}
             />
             {errors.password && (
-              <span className="text-red-500">This field is required</span>
+              <span className="text-red-500">
+                The password field is required
+              </span>
             )}
             <p
               onClick={() => setShowPass(!showPass)}
               className=" absolute right-3 bottom-3 cursor-pointer"
             >
               {showPass ? (
-                <FaEye className="size-5" />
+                <FaEye className="size-5 text-white" />
               ) : (
-                <FaEyeSlash className="size-5" />
+                <FaEyeSlash className="size-5 text-white" />
               )}
             </p>
           </div>
