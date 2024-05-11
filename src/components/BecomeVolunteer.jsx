@@ -1,12 +1,9 @@
-// import { useState } from "react";
 import useAuth from "../hooks/useAuth";
-// import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
 
 const BecomeVolunteer = () => {
   const { user } = useAuth();
-  //   const [startDate, setStartDate] = useState(new Date());
 
   const {
     register,
@@ -23,7 +20,6 @@ const BecomeVolunteer = () => {
       location,
       description,
     } = data;
-    // const deadline = new Date(startDate).toLocaleDateString();
     const organizer_email = user?.email;
     const organizer_name = user?.displayName;
     console.log({
@@ -33,7 +29,6 @@ const BecomeVolunteer = () => {
       no_of_volunteers,
       location,
       description,
-      //   deadline,
       organizer_email,
       organizer_name,
     });
@@ -55,7 +50,6 @@ const BecomeVolunteer = () => {
                 <input
                   id="thumbnail"
                   type="text"
-                  placeholder="Thumbnail"
                   disabled
                   defaultValue="Thumbnail"
                   className="block w-full px-4 py-3 mt-2 bg-[#E8F0FE] text-black border-2 rounded-md border-[#A14AF2]"

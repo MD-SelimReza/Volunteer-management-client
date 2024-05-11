@@ -10,6 +10,7 @@ import MyVolunteerRequestedPost from "../pages/MyVolunteerRequestedPost";
 import ErrorPage from "../pages/ErrorPage";
 import PrivateRoute from "./PrivateRoute";
 import BeVolunteer from "../pages/BeVolunteer";
+import UpdatePost from "../pages/UpdatePost";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <BeVolunteer />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update-post",
+        element: (
+          <PrivateRoute>
+            <UpdatePost />
           </PrivateRoute>
         ),
       },

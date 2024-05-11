@@ -5,7 +5,6 @@ import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  const [toggle, setToggle] = useState(false);
 
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
@@ -61,7 +60,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar fixed top-0 z-20 bg-[#3A415A] text-white shadow-sm">
+    <div className="navbar lg:fixed md:fixed top-0 z-20 bg-[#1F2937] text-white shadow-sm">
       <div className="flex-1">
         <Link to="/" className="flex gap-2 items-center">
           <img className="w-auto h-7" src="" alt="" />
@@ -76,10 +75,7 @@ const Navbar = () => {
         </ul>
 
         {user && (
-          <div
-            onClick={() => setTheme(!toggle)}
-            className="dropdown dropdown-end z-50 ml-3"
-          >
+          <div className="dropdown dropdown-end z-50 ml-3">
             <div
               tabIndex={0}
               role="button"
@@ -124,6 +120,7 @@ const Navbar = () => {
             </ul>
           </div>
         )}
+
         <label onChange={toggleTheme} className="swap swap-rotate ml-1 lg:ml-3">
           {/* this hidden checkbox controls the state */}
           <input

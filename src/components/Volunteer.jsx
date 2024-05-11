@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Volunteer = () => {
   return (
     <div className="my-20">
@@ -38,7 +40,7 @@ const Volunteer = () => {
             </h3>
             <div className="flex flex-wrap justify-between pt-3 space-x-2 text-xs dark:text-gray-600">
               <span>Deadline: June 1, 2020</span>
-              <span>View Details</span>
+              <Link to="/need-volunteer">View Details</Link>
             </div>
           </div>
         </div>
