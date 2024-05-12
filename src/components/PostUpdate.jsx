@@ -3,16 +3,29 @@ import useAuth from "../hooks/useAuth";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import { useNavigate } from "react-router-dom";
 
-const PostUpdate = () => {
-  const { user } = useAuth();
-  const [startDate, setStartDate] = useState(new Date());
+const PostUpdate = ({ post }) => {
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+    _id,
+    thumbnail,
+    post_title,
+    category,
+    no_of_volunteers,
+    location,
+    description,
+    deadline,
+  } = post;
+
+  const { user } = useAuth();
+  const [startDate, setStartDate] = useState(new Date(deadline) || new Date());
+
+  const { register, handleSubmit } = useForm();
 
   const handlePost = async (data) => {
     const {
@@ -26,7 +39,7 @@ const PostUpdate = () => {
     const deadline = new Date(startDate).toLocaleDateString();
     const organizer_email = user?.email;
     const organizer_name = user?.displayName;
-    console.log({
+    const updatePost = {
       thumbnail,
       post_title,
       category,
@@ -36,7 +49,17 @@ const PostUpdate = () => {
       deadline,
       organizer_email,
       organizer_name,
-    });
+    };
+
+    try {
+      const { data } = await axiosSecure.put(`post/${_id}`, updatePost);
+      console.log(data);
+      toast.success("Post update successfully!");
+      navigate("/all-post");
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.message);
+    }
   };
 
   return (
@@ -55,15 +78,10 @@ const PostUpdate = () => {
               <input
                 id="thumbnail"
                 type="text"
-                placeholder="Thumbnail"
+                defaultValue={thumbnail}
                 className="block w-full px-4 py-3 mt-2 text-gray-700 bg-white border border-gray-300 focus:border-[3px] focus:rounded-md focus:border-black"
-                {...register("thumbnail", { required: true })}
+                {...register("thumbnail")}
               />
-              {errors.thumbnail && (
-                <span className="text-red-500">
-                  The thumbnail field is required
-                </span>
-              )}
             </div>
             <div>
               <label className="text-gray-700 " htmlFor="post_title">
@@ -72,15 +90,10 @@ const PostUpdate = () => {
               <input
                 id="post_title"
                 type="text"
-                placeholder="Post Title"
+                defaultValue={post_title}
                 className="block w-full px-4 py-3 mt-2 text-gray-700 bg-white border border-gray-300 focus:border-[3px] focus:rounded-md focus:border-black"
-                {...register("post_title", { required: true })}
+                {...register("post_title")}
               />
-              {errors.post_title && (
-                <span className="text-red-500">
-                  The post title field is required
-                </span>
-              )}
             </div>
 
             <div className="flex flex-col gap-2 ">
@@ -98,19 +111,15 @@ const PostUpdate = () => {
               </label>
               <select
                 id="category"
+                defaultValue={category}
                 className="block w-full px-4 py-3 mt-2 text-gray-700 bg-white border border-gray-300 focus:border-[3px] focus:rounded-md focus:border-black"
-                {...register("category", { required: true })}
+                {...register("category")}
               >
                 <option value="Education">Education</option>
                 <option value="Healthcare">Healthcare</option>
                 <option value="Social Services">Social Services</option>
                 <option value="Animal Welfare">Animal Welfare</option>
               </select>
-              {errors.category && (
-                <span className="text-red-500">
-                  The category field is required
-                </span>
-              )}
             </div>
 
             <div>
@@ -120,13 +129,10 @@ const PostUpdate = () => {
               <input
                 id="no_of_volunteers"
                 type="number"
-                placeholder="No of Volunteers"
+                defaultValue={no_of_volunteers}
                 className="block w-full px-4 py-3 mt-2 text-gray-700 bg-white border border-gray-300 focus:border-[3px] focus:rounded-md focus:border-black"
-                {...register("no_of_volunteers", { required: true })}
+                {...register("no_of_volunteers")}
               />
-              {errors.no_of_volunteers && (
-                <span className="text-red-500">This field is required</span>
-              )}
             </div>
 
             <div>
@@ -136,15 +142,10 @@ const PostUpdate = () => {
               <input
                 id="location"
                 type="text"
-                placeholder="Location"
+                defaultValue={location}
                 className="block w-full px-4 py-3 mt-2 text-gray-700 bg-white border border-gray-300 focus:border-[3px] focus:rounded-md focus:border-black"
-                {...register("location", { required: true })}
+                {...register("location")}
               />
-              {errors.location && (
-                <span className="text-red-500">
-                  The location field is required
-                </span>
-              )}
             </div>
 
             <div>
@@ -179,14 +180,10 @@ const PostUpdate = () => {
             </label>
             <textarea
               id="description"
+              defaultValue={description}
               className="block w-full px-4 py-3 mt-2 text-gray-700 bg-white border border-gray-300 focus:border-[3px] focus:rounded-md focus:border-black"
-              {...register("description", { required: true })}
+              {...register("description")}
             ></textarea>
-            {errors.description && (
-              <span className="text-red-500">
-                The description field is required
-              </span>
-            )}
           </div>
           <div className="flex justify-center mt-6">
             <button className="rounded relative inline-flex group items-center justify-center px-10 py-2 m-1 cursor-pointer border-b-4 border-l-2 active:border-purple-600 active:shadow-none shadow-lg bg-gradient-to-tr from-purple-600 to-purple-500 border-purple-700 text-white">

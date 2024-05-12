@@ -70,12 +70,13 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/update-post",
+        path: "/update-post/:id",
         element: (
           <PrivateRoute>
             <UpdatePost />
           </PrivateRoute>
         ),
+        loader: ({ params }) => axios(`${baseURL}/update-post/${params.id}`),
       },
       {
         path: "/post-details/:id",

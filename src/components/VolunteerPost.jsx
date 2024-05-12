@@ -47,7 +47,7 @@ const VolunteerPost = () => {
     try {
       const { data } = await axiosSecure.post("/post", post);
       console.log(data);
-      toast.success("Job Data Updated Successfully!");
+      toast.success("Create a post successfully!");
       navigate("/all-post");
     } catch (err) {
       console.log(err);
