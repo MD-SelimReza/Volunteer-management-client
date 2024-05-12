@@ -11,6 +11,9 @@ import ErrorPage from "../pages/ErrorPage";
 import PrivateRoute from "./PrivateRoute";
 import BeVolunteer from "../pages/BeVolunteer";
 import UpdatePost from "../pages/UpdatePost";
+import PostDetails from "../components/PostDetails";
+import { baseURL } from "../baseUrl";
+import axios from "axios";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +76,15 @@ const router = createBrowserRouter([
             <UpdatePost />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/post-details/:id",
+        element: (
+          <PrivateRoute>
+            <PostDetails />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) => axios(`${baseURL}/details/${params.id}`),
       },
     ],
   },
