@@ -1,7 +1,9 @@
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 
 const VolunteerPostDetails = ({ post }) => {
   const {
+    _id,
     thumbnail,
     category,
     post_title,
@@ -19,7 +21,7 @@ const VolunteerPostDetails = ({ post }) => {
       <div className="max-w-lg mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
         <img
           className="object-cover object-center w-full h-56"
-          src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
+          src={thumbnail}
           alt="avatar"
         />
 
@@ -86,22 +88,30 @@ const VolunteerPostDetails = ({ post }) => {
             <h1 className="px-2 text-sm">{location}</h1>
           </div>
 
-          <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
-            <svg
-              aria-label="email icon"
-              className="w-6 h-6 fill-current text-[#274DCF]"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M3.00977 5.83789C3.00977 5.28561 3.45748 4.83789 4.00977 4.83789H20C20.5523 4.83789 21 5.28561 21 5.83789V17.1621C21 18.2667 20.1046 19.1621 19 19.1621H5C3.89543 19.1621 3 18.2667 3 17.1621V6.16211C3 6.11449 3.00333 6.06765 3.00977 6.0218V5.83789ZM5 8.06165V17.1621H19V8.06199L14.1215 12.9405C12.9499 14.1121 11.0504 14.1121 9.87885 12.9405L5 8.06165ZM6.57232 6.80554H17.428L12.7073 11.5263C12.3168 11.9168 11.6836 11.9168 11.2931 11.5263L6.57232 6.80554Z"
-              />
-            </svg>
+          <div className="flex justify-between">
+            <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
+              <svg
+                aria-label="email icon"
+                className="w-6 h-6 fill-current text-[#274DCF]"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M3.00977 5.83789C3.00977 5.28561 3.45748 4.83789 4.00977 4.83789H20C20.5523 4.83789 21 5.28561 21 5.83789V17.1621C21 18.2667 20.1046 19.1621 19 19.1621H5C3.89543 19.1621 3 18.2667 3 17.1621V6.16211C3 6.11449 3.00333 6.06765 3.00977 6.0218V5.83789ZM5 8.06165V17.1621H19V8.06199L14.1215 12.9405C12.9499 14.1121 11.0504 14.1121 9.87885 12.9405L5 8.06165ZM6.57232 6.80554H17.428L12.7073 11.5263C12.3168 11.9168 11.6836 11.9168 11.2931 11.5263L6.57232 6.80554Z"
+                />
+              </svg>
 
-            <h1 className="px-2 text-sm">Email: patterson@example.com</h1>
+              <h1 className="px-2 text-sm">Email: patterson@example.com</h1>
+            </div>
+            <Link to={`/be-volunteer/${_id}`}>
+              <div className="relative rounded px-5 py-2.5 overflow-hidden group bg-[#274DCF] hover:bg-gradient-to-r hover:from-[#274DCF] hover:to-[#274DCFB3] text-white hover:ring-2 hover:ring-offset-2 hover:ring-[#274DCFB3] transition-all ease-out duration-300">
+                <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                <span className="relative uppercase">Be a volunteer</span>
+              </div>
+            </Link>
           </div>
         </div>
       </div>

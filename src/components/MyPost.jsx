@@ -3,6 +3,7 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../components/Loader";
 import useAuth from "../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const MyPost = () => {
   const { user } = useAuth();
@@ -18,7 +19,16 @@ const MyPost = () => {
     return data;
   };
 
-  console.log(posts);
+  const handleDeletePost = async (id) => {
+    try {
+      const { data } = await axiosSecure.delete(`/post/${id}`);
+      console.log(data);
+      toast.success("Delete a post Successfully!");
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.message);
+    }
+  };
 
   if (isLoading) return <Loader />;
 
@@ -97,14 +107,17 @@ const MyPost = () => {
                           {post.category}
                         </td>
                         <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                          {post.deadline}
+                          {post.location}
                         </td>
                         <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                          {post.location}
+                          {post.deadline}
                         </td>
                         <td className="px-4 py-4 text-sm whitespace-nowrap">
                           <div className="flex items-center gap-x-6">
-                            <button className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
+                            <button
+                              onClick={() => handleDeletePost(post._id)}
+                              className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"
+                            >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
