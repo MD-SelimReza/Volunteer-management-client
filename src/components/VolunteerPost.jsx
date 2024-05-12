@@ -3,10 +3,15 @@ import useAuth from "../hooks/useAuth";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../src/hooks/useAxiosSecure";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const VolunteerPost = () => {
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const [startDate, setStartDate] = useState(new Date());
+  const navigate = useNavigate();
 
   const {
     register,
@@ -26,7 +31,8 @@ const VolunteerPost = () => {
     const deadline = new Date(startDate).toLocaleDateString();
     const organizer_email = user?.email;
     const organizer_name = user?.displayName;
-    console.log({
+    const organizer_photo = user?.photoURL;
+    const post = {
       thumbnail,
       post_title,
       category,
@@ -36,14 +42,25 @@ const VolunteerPost = () => {
       deadline,
       organizer_email,
       organizer_name,
-    });
+      organizer_photo,
+    };
+    try {
+      const { data } = await axiosSecure.post("/post", post);
+      console.log(data);
+      toast.success("Job Data Updated Successfully!");
+      navigate("/all-post");
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.message);
+    }
+    console.log(post);
   };
 
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-306px)] my-12">
       <section className="w-3/4 p-2 md:p-6 mx-auto bg-white rounded-md shadow-lg border-4 border-[#FFC4AD]">
         <h2 className="text-3xl text-center font-bold text-[#091854] capitalize mb-10">
-          Become a Volunteer
+          Create A Post
         </h2>
 
         <form onSubmit={handleSubmit(handlePost)}>

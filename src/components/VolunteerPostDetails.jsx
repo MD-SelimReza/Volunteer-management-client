@@ -1,69 +1,53 @@
-const VolunteerPostDetails = () => {
+import { Helmet } from "react-helmet-async";
+
+const VolunteerPostDetails = ({ post }) => {
+  const {
+    thumbnail,
+    category,
+    post_title,
+    description,
+    deadline,
+    location,
+    NoOfVolunteers,
+  } = post;
+
   return (
-    <div className="lg:my-16 my-10 px-5 grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
-      <div className="w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+    <div className="w-full my-10 lg:px-10 px-5 ">
+      <Helmet>
+        <title>{post_title} - Volunteer Management</title>
+      </Helmet>
+      <div className="max-w-lg mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
         <img
           className="object-cover object-center w-full h-56"
           src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
           alt="avatar"
         />
 
-        <div className="flex items-center">
-          <div className="flex items-center px-6 py-3 bg-[#DE2A4D]">
-            <svg
-              aria-label="headphones icon"
-              className="w-6 h-6 text-white fill-current"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M17 21C15.8954 21 15 20.1046 15 19V15C15 13.8954 15.8954 13 17 13H19V12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12V13H7C8.10457 13 9 13.8954 9 15V19C9 20.1046 8.10457 21 7 21H3V12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12V21H17ZM19 15H17V19H19V15ZM7 15H5V19H7V15Z"
-              />
-            </svg>
-
+        <div className="flex w-full items-center">
+          <div className="px-6 w-full py-3 bg-[#DE2A4D]">
             <h1 className="mx-3 text-lg font-semibold text-white">
-              Category: Focusing
+              {category}
             </h1>
           </div>
 
-          <div className="flex items-center px-6 py-3 bg-[#274DCF]">
-            <svg
-              aria-label="headphones icon"
-              className="w-6 h-6 text-white fill-current"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M17 21C15.8954 21 15 20.1046 15 19V15C15 13.8954 15.8954 13 17 13H19V12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12V13H7C8.10457 13 9 13.8954 9 15V19C9 20.1046 8.10457 21 7 21H3V12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12V21H17ZM19 15H17V19H19V15ZM7 15H5V19H7V15Z"
-              />
-            </svg>
-
+          <div className="px-6 w-full py-3 bg-[#274DCF]">
             <h1 className="mx-3 text-lg font-semibold text-white">
-              Category: Focusing
+              Volunteers : {NoOfVolunteers}
             </h1>
           </div>
         </div>
 
         <div className="px-6 py-4">
           <h1 className="text-xl font-semibold text-gray-800 dark:text-white">
-            Post Title: Patterson johnson
+            {post_title}
           </h1>
 
-          <p className="py-2 text-gray-700 dark:text-gray-400">
-            Description: Full Stack maker & UI / UX Designer , love hip hop
-            music Author of Building UI.
-          </p>
+          <p className="py-2 text-gray-700 dark:text-gray-400">{description}</p>
 
           <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
             <svg
               aria-label="suitcase icon"
-              className="w-6 h-6 fill-current"
+              className="w-6 h-6 fill-current text-[#DE2A4D]"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -76,13 +60,13 @@ const VolunteerPostDetails = () => {
               />
             </svg>
 
-            <h1 className="px-2 text-sm">Deadline: 05/10/24</h1>
+            <h1 className="px-2 text-sm">Deadline: {deadline}</h1>
           </div>
 
           <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
             <svg
               aria-label="location pin icon"
-              className="w-6 h-6 fill-current"
+              className="w-6 h-6 fill-current text-[#274DCF]"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -99,13 +83,13 @@ const VolunteerPostDetails = () => {
               />
             </svg>
 
-            <h1 className="px-2 text-sm">Location: California</h1>
+            <h1 className="px-2 text-sm">{location}</h1>
           </div>
 
           <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
             <svg
               aria-label="email icon"
-              className="w-6 h-6 fill-current"
+              className="w-6 h-6 fill-current text-[#274DCF]"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"

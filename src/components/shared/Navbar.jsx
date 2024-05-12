@@ -43,7 +43,7 @@ const Navbar = () => {
         className={({ isActive }) =>
           isActive ? "text-emerald-300 border-b-4 border-emerald-300" : ""
         }
-        to="/need-volunteer"
+        to="/all-post"
       >
         Need Volunteer
       </NavLink>

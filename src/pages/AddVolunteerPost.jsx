@@ -6,7 +6,7 @@ const AddVolunteerPost = () => {
   return (
     <div>
       <Helmet>
-        <title>Add Volunteer Post - Volunteer Management</title>
+        <title>Add Post - Volunteer Management</title>
       </Helmet>
       <Banner />
       <VolunteerPost />

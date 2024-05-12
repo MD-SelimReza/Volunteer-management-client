@@ -1,15 +1,13 @@
-import Banner from "../components/Banner";
-import VolunteerPostDetails from "../components/VolunteerPostDetails";
+import PostBox from "../components/PostBox";
 import { Helmet } from "react-helmet-async";
 
 const NeedVolunteer = () => {
   return (
     <div>
       <Helmet>
-        <title>Need Volunteer - Volunteer Management</title>
+        <title>All Post - Volunteer Management</title>
       </Helmet>
-      <Banner />
-      <VolunteerPostDetails />
+      <PostBox />
     </div>
   );
 };
