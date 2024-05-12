@@ -60,10 +60,10 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar lg:fixed md:fixed top-0 z-20 bg-[#1F2937] text-white shadow-sm">
+    <div className="navbar max-w-6xl border-b shadow-lg lg:fixed md:fixed top-0 z-20 bg-[#1F2937] text-white">
       <div className="flex-1">
         <Link to="/" className="flex gap-2 items-center">
-          <img className="w-auto h-7" src="" alt="" />
+          <img className="w-auto h-8" src="/logo.png" alt="" />
           <span className="font-bold text-lg md:text-xl lg:text-2xl text-emerald-400">
             <span>Volunteer</span> Management
           </span>

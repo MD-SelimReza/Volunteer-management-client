@@ -6,24 +6,24 @@ import { Grid, Navigation } from "swiper/modules";
 
 const AboutUs = () => {
   return (
-    <div className="my-10">
-      <div className="flex">
-        <div className="w-1/2">
+    <div className="lg:my-20 md:my-16 my-10 lg:px-10 px-5">
+      <div className="flex lg:flex-row gap-6 flex-col">
+        <div className="lg:w-1/2 w-full">
           <img
             src="https://election-react.wpolive.com/static/media/about-s2.650a410339a3a2239280.jpg"
             alt=""
           />
         </div>
-        <div className="w-1/2 flex flex-col space-y-3">
-          <div className="flex items-center gap-3">
+        <div className="lg:w-1/2 w-full flex flex-col space-y-3">
+          <div className="flex lg:justify-normal justify-center items-center gap-3">
             <span className="w-5 border-b-4 border-[#DE2A4D]"></span>
 
             <p className="text-[#DE2A4D] font-bold">About Us</p>
 
             <span className="w-5 border-b-4 border-[#DE2A4D]"></span>
           </div>
-          <p className="text-3xl font-bold">
-            We Can Make Our New History Together!
+          <p className="text-3xl lg:text-left text-center font-bold">
+            We Can Make Our New <br /> History Together!
           </p>
           <p className="">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi

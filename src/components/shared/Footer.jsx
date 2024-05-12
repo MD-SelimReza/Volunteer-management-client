@@ -3,6 +3,7 @@ const Footer = () => {
     <footer>
       <div className="grid gap-8 lg:grid-cols-3 grid-cols-2 justify-center p-10 bg-[#3A415A] text-white">
         <aside className="lg:col-span-1 col-span-2 lg:text-left text-center">
+          <img src="/logo.png" alt="" className="size-24" />
           <p>
             ACME Industries Ltd.
             <br />

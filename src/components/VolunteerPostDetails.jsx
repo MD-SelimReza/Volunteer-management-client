@@ -1,6 +1,6 @@
 const VolunteerPostDetails = () => {
   return (
-    <div className="my-16 grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
+    <div className="lg:my-16 my-10 px-5 grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
       <div className="w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
         <img
           className="object-cover object-center w-full h-56"

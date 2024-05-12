@@ -2,12 +2,11 @@ import { Link } from "react-router-dom";
 
 const Volunteer = () => {
   return (
-    <div className="my-20">
-      <div className="h-24 bg-gradient-to-l my-20 from-[#DE2A4D]"></div>
+    <div className="lg:my-20 md:my-16 my-10 lg:px-10 px-5">
       <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
-        <div>
+        <div className="lg:text-left md:text-left text-center">
           <div className="flex flex-col space-y-3">
-            <div className="flex items-center gap-3">
+            <div className="flex lg:justify-normal md:justify-normal justify-center items-center gap-3">
               <span className="w-5 border-b-4 border-[#DE2A4D]"></span>
 
               <p className="text-[#DE2A4D] font-bold">Our Events</p>
@@ -15,10 +14,11 @@ const Volunteer = () => {
               <span className="w-5 border-b-4 border-[#DE2A4D]"></span>
             </div>
             <p className="text-3xl font-bold leading-relaxed">
-              You Can <br /> Attend Our <br /> Upcoming <br /> Events
+              You Can <br /> Attend Our <br /> Upcoming{" "}
+              <br className="lg:flex hidden" /> Events
             </p>
           </div>
-          <div className="flex mt-5 mb-10">
+          <div className="flex lg:justify-normal md:justify-normal justify-center mt-5">
             <span className="w-16 border-b-[6px] border-[#DE2A4D]"></span>
             <span className="w-16 border-b-[6px] border-[#274DCF]"></span>
           </div>
@@ -156,7 +156,6 @@ const Volunteer = () => {
           <span className="relative">See all</span>
         </button>
       </div>
-      <div className="h-24 bg-gradient-to-l my-20 from-[#274DCF]"></div>
     </div>
   );
 };

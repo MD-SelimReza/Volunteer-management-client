@@ -1,6 +1,6 @@
 const MyVolunteerRequestPost = () => {
   return (
-    <div className="my-16">
+    <div className="my-10 px-5">
       <section className="container w-full mx-auto">
         <div className="flex flex-col justify-center items-center space-y-3">
           <div className="flex items-center gap-3">

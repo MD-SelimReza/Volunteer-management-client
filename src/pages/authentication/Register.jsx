@@ -4,6 +4,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const [showPass, setShowPass] = useState(false);
@@ -41,19 +42,17 @@ const Register = () => {
       console.log(err);
       toast.error(err?.message);
     }
-    // console.log({ name, email, photo, password });
   };
 
   if (user || loading) return;
 
   return (
-    <div className="w-full max-w-sm p-6 m-auto mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800">
+    <div className="lg:max-w-md max-w-sm my-10 p-6 m-auto mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800">
+      <Helmet>
+        <title>Registration - Volunteer Management</title>
+      </Helmet>
       <div className="flex flex-col items-center justify-center mx-auto">
-        <img
-          className="w-auto h-7 sm:h-8"
-          src="https://merakiui.com/images/logo.svg"
-          alt=""
-        />
+        <img className="size-16" src="/logo.png" alt="" />
         <h1 className="mt-4 text-gray-600 dark:text-gray-300 md:text-lg">
           Welcome back
         </h1>

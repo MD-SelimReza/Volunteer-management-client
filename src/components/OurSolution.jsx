@@ -1,6 +1,6 @@
 const OurSolution = () => {
   return (
-    <div className="my-10">
+    <div className="lg:my-20 md:my-16 my-10 lg:px-10 px-5">
       <div className="flex flex-col justify-center items-center space-y-3">
         <div className="flex items-center gap-3">
           <span className="w-5 border-b-4 border-[#DE2A4D]"></span>
