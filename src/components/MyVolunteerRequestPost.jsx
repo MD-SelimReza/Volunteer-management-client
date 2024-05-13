@@ -1,4 +1,38 @@
+import { useQuery } from "@tanstack/react-query";
+import useAuth from "../hooks/useAuth";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import Loader from "./Loader";
+import toast from "react-hot-toast";
+
 const MyVolunteerRequestPost = () => {
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+
+  const { data: requestPosts = [], isLoading } = useQuery({
+    queryFn: () => getPosts(),
+    queryKey: ["posts"],
+  });
+
+  const getPosts = async () => {
+    const { data } = await axiosSecure(`/request/${user?.email}`);
+    return data;
+  };
+
+  const handleRequest = async (email) => {
+    try {
+      const { data } = await axiosSecure.delete(`/request/${email}`);
+      console.log(data);
+      toast.error("Canceled Request!");
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.message);
+    }
+  };
+
+  console.log(requestPosts);
+
+  if (isLoading) return <Loader />;
+
   return (
     <div className="my-10 px-5">
       <section className="container w-full mx-auto">
@@ -59,45 +93,50 @@ const MyVolunteerRequestPost = () => {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                    <tr>
-                      <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                        <div className="flex items-center gap-x-2">
-                          <img
-                            className="object-cover w-10 h-10 rounded-full"
-                            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-                            alt=""
-                          />
-                          <div>
-                            <h2 className="font-medium text-gray-800 dark:text-white ">
-                              Arthur Melo
-                            </h2>
-                            <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
-                              @authurmelo
-                            </p>
+                    {requestPosts.map((post) => (
+                      <tr key={post._id}>
+                        <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="flex items-center gap-x-2">
+                            <img
+                              className="object-cover w-10 h-10 rounded-full"
+                              src={post.photo}
+                              alt=""
+                            />
+                            <div>
+                              <h2 className="font-medium text-gray-800 dark:text-white ">
+                                {post.volunteer_name}
+                              </h2>
+                              <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
+                                @{post.volunteer_email.split("@")[0]}
+                              </p>
+                            </div>
                           </div>
-                        </div>
-                      </td>
-                      <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                        <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
-                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                        </td>
+                        <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
+                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
 
-                          <h2 className="text-sm font-normal text-emerald-500">
-                            Active
-                          </h2>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        Post Title
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        authurmelo@example.com
-                      </td>
-                      <td className="px-4 py-4 text-sm whitespace-nowrap">
-                        <button className="btn btn-outline btn-error">
-                          cancel
-                        </button>
-                      </td>
-                    </tr>
+                            <h2 className="text-sm font-normal text-emerald-500">
+                              {post.status}
+                            </h2>
+                          </div>
+                        </td>
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                          {post.post_title}
+                        </td>
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                          {post.volunteer_email}
+                        </td>
+                        <td className="px-4 py-4 text-sm whitespace-nowrap">
+                          <button
+                            onClick={() => handleRequest(post.volunteer_email)}
+                            className="btn btn-outline btn-error"
+                          >
+                            cancel
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
