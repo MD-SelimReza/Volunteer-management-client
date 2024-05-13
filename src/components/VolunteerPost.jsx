@@ -24,7 +24,7 @@ const VolunteerPost = () => {
       thumbnail,
       post_title,
       category,
-      no_of_volunteers,
+      NoOfVolunteers,
       location,
       description,
     } = data;
@@ -36,7 +36,7 @@ const VolunteerPost = () => {
       thumbnail,
       post_title,
       category,
-      no_of_volunteers,
+      NoOfVolunteers,
       location,
       description,
       deadline,
@@ -131,17 +131,17 @@ const VolunteerPost = () => {
             </div>
 
             <div>
-              <label className="text-gray-700 " htmlFor="no_of_volunteers">
+              <label className="text-gray-700 " htmlFor="NoOfVolunteers">
                 Number of Volunteers
               </label>
               <input
-                id="no_of_volunteers"
+                id="NoOfVolunteers"
                 type="number"
                 placeholder="No of Volunteers"
                 className="block w-full px-4 py-3 mt-2 text-gray-700 bg-white border border-gray-300 focus:border-[3px] focus:rounded-md focus:border-black"
-                {...register("no_of_volunteers", { required: true })}
+                {...register("NoOfVolunteers", { required: true })}
               />
-              {errors.no_of_volunteers && (
+              {errors.NoOfVolunteers && (
                 <span className="text-red-500">This field is required</span>
               )}
             </div>

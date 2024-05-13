@@ -10,10 +10,11 @@ const BecomeVolunteer = ({ post }) => {
   const { user } = useAuth();
   // const navigate = useNavigate();
   const {
+    _id,
     thumbnail,
     post_title,
     category,
-    no_of_volunteers,
+    NoOfVolunteers,
     location,
     description,
     deadline,
@@ -21,6 +22,7 @@ const BecomeVolunteer = ({ post }) => {
     organizer_name,
   } = post;
 
+  const requestId = _id;
   const volunteer_email = user?.email;
   const volunteer_name = user?.displayName;
   const status = "request";
@@ -34,10 +36,11 @@ const BecomeVolunteer = ({ post }) => {
   const handleRequest = async (data) => {
     const { suggestion } = data;
     const beVolunteer = {
+      requestId,
       thumbnail,
       post_title,
       category,
-      no_of_volunteers,
+      NoOfVolunteers,
       location,
       description,
       deadline,
@@ -48,6 +51,10 @@ const BecomeVolunteer = ({ post }) => {
       suggestion,
       status,
     };
+
+    if (NoOfVolunteers === "0") {
+      return toast.error("No set available for volunteer!");
+    }
 
     if (organizer_email === volunteer_email) {
       return toast.error("Sorry, you can not request on this post!");
@@ -60,10 +67,11 @@ const BecomeVolunteer = ({ post }) => {
       // navigate("/");
     } catch (err) {
       console.log(err);
-      toast.error(err?.message);
+      toast.error(err.response.data);
     }
 
-    console.table(beVolunteer);
+    console.table(post);
+    console.table(beVolunteer.NoOfVolunteers === "0");
   };
   return (
     <div>
@@ -136,15 +144,15 @@ const BecomeVolunteer = ({ post }) => {
               <div>
                 <label
                   className="text-[#091854] font-medium"
-                  htmlFor="no_of_volunteers"
+                  htmlFor="NoOfVolunteers"
                 >
                   Number of Volunteers
                 </label>
                 <input
-                  id="no_of_volunteers"
+                  id="NoOfVolunteers"
                   type="number"
                   disabled
-                  defaultValue={no_of_volunteers}
+                  defaultValue={NoOfVolunteers}
                   className="block w-full px-4 py-3 mt-2 bg-[#E8F0FE] text-black border-2 rounded-md border-[#A14AF2]"
                 />
               </div>

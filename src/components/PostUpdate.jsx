@@ -16,7 +16,7 @@ const PostUpdate = ({ post }) => {
     thumbnail,
     post_title,
     category,
-    no_of_volunteers,
+    NoOfVolunteers,
     location,
     description,
     deadline,
@@ -32,7 +32,7 @@ const PostUpdate = ({ post }) => {
       thumbnail,
       post_title,
       category,
-      no_of_volunteers,
+      NoOfVolunteers,
       location,
       description,
     } = data;
@@ -43,7 +43,7 @@ const PostUpdate = ({ post }) => {
       thumbnail,
       post_title,
       category,
-      no_of_volunteers,
+      NoOfVolunteers,
       location,
       description,
       deadline,
@@ -123,15 +123,15 @@ const PostUpdate = ({ post }) => {
             </div>
 
             <div>
-              <label className="text-gray-700 " htmlFor="no_of_volunteers">
+              <label className="text-gray-700 " htmlFor="NoOfVolunteers">
                 Number of Volunteers
               </label>
               <input
-                id="no_of_volunteers"
+                id="NoOfVolunteers"
                 type="number"
-                defaultValue={no_of_volunteers}
+                defaultValue={NoOfVolunteers}
                 className="block w-full px-4 py-3 mt-2 text-gray-700 bg-white border border-gray-300 focus:border-[3px] focus:rounded-md focus:border-black"
-                {...register("no_of_volunteers")}
+                {...register("NoOfVolunteers")}
               />
             </div>
 
