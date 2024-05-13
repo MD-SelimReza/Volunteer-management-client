@@ -49,6 +49,13 @@ const MyVolunteerRequestPost = () => {
           </p>
         </div>
 
+        <div className="text-lg text-right px-2 font-medium text-gray-800 ">
+          Total Post :{" "}
+          <span className="bg-purple-200 px-3 rounded-full">
+            {requestPosts.length}
+          </span>
+        </div>
+
         <div className="flex flex-col mt-6">
           <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">

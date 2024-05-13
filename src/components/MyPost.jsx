@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Loader from "../components/Loader";
 import useAuth from "../hooks/useAuth";
-import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const MyPost = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
 
   const { data: posts = [], isLoading } = useQuery({
     queryFn: () => getPosts(),
@@ -19,15 +20,50 @@ const MyPost = () => {
     return data;
   };
 
+  const { mutateAsync } = useMutation({
+    mutationFn: async ({ id }) => {
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      });
+
+      if (result.isConfirmed) {
+        try {
+          const { data } = await axiosSecure.delete(`/post/${id}`);
+          console.log(data);
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+        } catch (error) {
+          console.error("Error deleting post:", error);
+          Swal.fire({
+            title: "Error!",
+            text: "Failed to delete the post.",
+            icon: "error",
+          });
+        }
+      }
+    },
+    onSuccess: () => {
+      console.log("delete post successfully");
+      Swal.fire({
+        title: "Deleted!",
+        text: "Your file has been deleted.",
+        icon: "success",
+      });
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
+    },
+  });
+
   const handleDeletePost = async (id) => {
-    try {
-      const { data } = await axiosSecure.delete(`/post/${id}`);
-      console.log(data);
-      toast.success("Delete a post Successfully!");
-    } catch (err) {
-      console.log(err);
-      toast.error(err?.message);
-    }
+    await mutateAsync({ id });
   };
 
   if (isLoading) return <Loader />;
@@ -48,6 +84,13 @@ const MyPost = () => {
             <span className="text-red-500"> delete </span> <br /> your post
             here.
           </p>
+        </div>
+
+        <div className="text-lg text-right px-2 font-medium text-gray-800 ">
+          Total Post :{" "}
+          <span className="bg-purple-200 px-3 rounded-full">
+            {posts.length}
+          </span>
         </div>
 
         <div className="flex flex-col mt-10">

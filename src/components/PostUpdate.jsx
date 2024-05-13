@@ -123,11 +123,11 @@ const PostUpdate = ({ post }) => {
             </div>
 
             <div>
-              <label className="text-gray-700 " htmlFor="NoOfVolunteers">
+              <label className="text-gray-700 " htmlFor="no_of_volunteers">
                 Number of Volunteers
               </label>
               <input
-                id="NoOfVolunteers"
+                id="no_of_volunteers"
                 type="number"
                 defaultValue={NoOfVolunteers}
                 className="block w-full px-4 py-3 mt-2 text-gray-700 bg-white border border-gray-300 focus:border-[3px] focus:rounded-md focus:border-black"
