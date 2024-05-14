@@ -5,12 +5,15 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { baseURL } from "../../baseUrl";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
   const { signIn, signInWithGoogle, user, loading } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     if (user) {
@@ -34,9 +37,15 @@ const Login = () => {
     }
     try {
       const result = await signIn(email, password);
+
       if (result?.user) {
-        toast.success("Sign in successful");
-        navigate(location.state || "/");
+        const { data } = await axiosSecure.post(`${baseURL}/jwt`, {
+          email: result?.user?.email,
+        });
+        if (data.success) {
+          toast.success("Sign In Successful");
+          navigate(location.state || "/");
+        }
       }
     } catch (err) {
       toast.error(err?.message);
@@ -46,9 +55,15 @@ const Login = () => {
   const handleGoogleSignIn = async () => {
     try {
       const result = await signInWithGoogle();
+
       if (result?.user) {
-        toast.success("Sing In Successful");
-        navigate(location.state || "/");
+        const { data } = await axiosSecure.post(`${baseURL}/jwt`, {
+          email: result?.user?.email,
+        });
+        if (data.success) {
+          toast.success("Sign In Successful");
+          navigate(location.state || "/");
+        }
       }
     } catch (err) {
       toast.error(err?.message);

@@ -49,7 +49,7 @@ const Volunteer = () => {
               <img
                 alt=""
                 className="object-cover w-full h-52 bg-gray-500"
-                src="https://source.unsplash.com/200x200/?fashion?1"
+                src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
               />
             </div>
             <div className="flex flex-col flex-1 pt-4">

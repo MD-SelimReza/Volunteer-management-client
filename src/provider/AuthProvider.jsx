@@ -10,6 +10,8 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
+import { baseURL } from "../baseUrl";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -36,7 +38,12 @@ const AuthProvider = ({ children }) => {
 
   const logOut = async () => {
     setLoading(true);
-    return signOut(auth);
+    const { data } = await axios(`${baseURL}/logOut`, {
+      withCredentials: true,
+    });
+    if (data.success) {
+      return signOut(auth);
+    }
   };
 
   const updateUserProfile = (name, photo) => {

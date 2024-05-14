@@ -5,12 +5,15 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { baseURL } from "../../baseUrl";
 
 const Register = () => {
   const [showPass, setShowPass] = useState(false);
   const { createUser, updateUserProfile, user, loading, setUser } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     if (user) {
@@ -36,8 +39,15 @@ const Register = () => {
       const result = await createUser(email, password);
       await updateUserProfile(name, photo);
       setUser({ ...result?.user, photoURL: photo, displayName: name });
-      toast.success("Sign up successful");
-      navigate(location.state || "/");
+      if (result?.user) {
+        const { data } = await axiosSecure.post(`${baseURL}/jwt`, {
+          email: result?.user?.email,
+        });
+        if (data.success) {
+          toast.success("Sign In Successful");
+          navigate(location.state || "/");
+        }
+      }
     } catch (err) {
       toast.error(err?.message);
     }

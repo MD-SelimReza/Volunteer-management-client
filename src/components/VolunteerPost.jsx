@@ -45,11 +45,9 @@ const VolunteerPost = () => {
       organizer_photo,
     };
     try {
-      const { data } = await axiosSecure.post("/post", post);
-      if (data.modifiedCount === 1) {
-        toast.success("Create a post successfully!");
-        navigate("/all-post");
-      }
+      await axiosSecure.post("/post", post);
+      toast.success("Create a post successfully!");
+      navigate("/all-post");
     } catch (err) {
       toast.error(err?.message);
     }
