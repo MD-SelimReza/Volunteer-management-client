@@ -53,11 +53,11 @@ const PostUpdate = ({ post }) => {
 
     try {
       const { data } = await axiosSecure.put(`post/${_id}`, updatePost);
-      console.log(data);
-      toast.success("Post update successfully!");
+      if (data.modifiedCount === 1) {
+        toast.success("Post update successfully!");
+      }
       navigate("/all-post");
     } catch (err) {
-      console.log(err);
       toast.error(err?.message);
     }
   };

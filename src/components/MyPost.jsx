@@ -35,14 +35,14 @@ const MyPost = () => {
       if (result.isConfirmed) {
         try {
           const { data } = await axiosSecure.delete(`/post/${id}`);
-          console.log(data);
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your file has been deleted.",
-            icon: "success",
-          });
+          if (data.deletedCount > 0) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Post delete successfully.",
+              icon: "success",
+            });
+          }
         } catch (error) {
-          console.error("Error deleting post:", error);
           Swal.fire({
             title: "Error!",
             text: "Failed to delete the post.",
@@ -52,12 +52,6 @@ const MyPost = () => {
       }
     },
     onSuccess: () => {
-      console.log("delete post successfully");
-      Swal.fire({
-        title: "Deleted!",
-        text: "Your file has been deleted.",
-        icon: "success",
-      });
       queryClient.invalidateQueries({ queryKey: ["posts"] });
     },
   });
@@ -86,7 +80,7 @@ const MyPost = () => {
           </p>
         </div>
 
-        <div className="text-lg text-right px-2 font-medium text-gray-800 ">
+        <div className="text-lg text-right px-2 font-medium text-[#DE2A4D]">
           Total Post :{" "}
           <span className="bg-purple-200 px-3 rounded-full">
             {posts.length}

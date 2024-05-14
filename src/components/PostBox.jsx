@@ -50,7 +50,6 @@ const PostBox = () => {
   const count = countData?.total || 0;
   const numberOfPages = Math.ceil(count / itemsPerPage);
   const pages = [...Array(numberOfPages).keys()].map((index) => index + 1);
-  console.log(count, pages);
 
   const handlePaginationButton = (page) => {
     setCurrentPage(page);
@@ -61,8 +60,6 @@ const PostBox = () => {
     const text = e.target.search.value;
     setSearch(text);
   };
-
-  console.log(search);
 
   const handleReset = () => {
     setFilter("");
@@ -77,7 +74,7 @@ const PostBox = () => {
 
   return (
     <div className="lg:my-20 md:my-16 my-10 lg:px-10 px-5">
-      <div className="flex flex-col md:flex-row justify-center items-center gap-5 ">
+      <div className="flex mb-5 flex-col md:flex-row justify-center items-center gap-5 ">
         <p>Total Post: {countData?.total}</p>
         <div>
           <select

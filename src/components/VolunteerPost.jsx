@@ -46,14 +46,13 @@ const VolunteerPost = () => {
     };
     try {
       const { data } = await axiosSecure.post("/post", post);
-      console.log(data);
-      toast.success("Create a post successfully!");
-      navigate("/all-post");
+      if (data.modifiedCount === 1) {
+        toast.success("Create a post successfully!");
+        navigate("/all-post");
+      }
     } catch (err) {
-      console.log(err);
       toast.error(err?.message);
     }
-    console.log(post);
   };
 
   return (

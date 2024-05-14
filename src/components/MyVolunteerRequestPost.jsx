@@ -1,14 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Loader from "./Loader";
-import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const MyVolunteerRequestPost = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
 
-  const { data: requestPosts = [], isLoading } = useQuery({
+  const { data: posts = [], isLoading } = useQuery({
     queryFn: () => getPosts(),
     queryKey: ["posts"],
   });
@@ -18,18 +19,45 @@ const MyVolunteerRequestPost = () => {
     return data;
   };
 
-  const handleRequest = async (email) => {
-    try {
-      const { data } = await axiosSecure.delete(`/request/${email}`);
-      console.log(data);
-      toast.error("Canceled Request!");
-    } catch (err) {
-      console.log(err);
-      toast.error(err?.message);
-    }
-  };
+  const { mutateAsync } = useMutation({
+    mutationFn: async ({ email }) => {
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      });
 
-  console.log(requestPosts);
+      if (result.isConfirmed) {
+        try {
+          const { data } = await axiosSecure.delete(`/request/${email}`);
+          if (data.deletedCount === 1) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Canceled request.",
+              icon: "success",
+            });
+          }
+        } catch (error) {
+          Swal.fire({
+            title: "Error!",
+            text: "Failed to delete the post.",
+            icon: "error",
+          });
+        }
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
+    },
+  });
+
+  const handleRequest = async (email) => {
+    await mutateAsync({ email });
+  };
 
   if (isLoading) return <Loader />;
 
@@ -49,10 +77,10 @@ const MyVolunteerRequestPost = () => {
           </p>
         </div>
 
-        <div className="text-lg text-right px-2 font-medium text-gray-800 ">
+        <div className="text-lg text-right px-2 font-medium text-[#DE2A4D]">
           Total Post :{" "}
           <span className="bg-purple-200 px-3 rounded-full">
-            {requestPosts.length}
+            {posts.length}
           </span>
         </div>
 
@@ -100,7 +128,7 @@ const MyVolunteerRequestPost = () => {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                    {requestPosts.map((post) => (
+                    {posts.map((post) => (
                       <tr key={post._id}>
                         <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                           <div className="flex items-center gap-x-2">
@@ -113,9 +141,6 @@ const MyVolunteerRequestPost = () => {
                               <h2 className="font-medium text-gray-800 dark:text-white ">
                                 {post.volunteer_name}
                               </h2>
-                              <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
-                                @{post.volunteer_email.split("@")[0]}
-                              </p>
                             </div>
                           </div>
                         </td>

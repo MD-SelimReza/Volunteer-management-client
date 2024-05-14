@@ -39,7 +39,6 @@ const Register = () => {
       toast.success("Sign up successful");
       navigate(location.state || "/");
     } catch (err) {
-      console.log(err);
       toast.error(err?.message);
     }
   };

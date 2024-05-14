@@ -34,24 +34,23 @@ const Login = () => {
     }
     try {
       const result = await signIn(email, password);
-      console.log(result?.user);
-      toast.success("Sign in successful");
-      navigate(location.state || "/");
+      if (result?.user) {
+        toast.success("Sign in successful");
+        navigate(location.state || "/");
+      }
     } catch (err) {
-      console.log(err);
       toast.error(err?.message);
     }
-    console.log({ email, password });
   };
 
   const handleGoogleSignIn = async () => {
     try {
       const result = await signInWithGoogle();
-      console.log(result?.user);
-      toast.success("Sing In Successful");
-      navigate(location.state || "/");
+      if (result?.user) {
+        toast.success("Sing In Successful");
+        navigate(location.state || "/");
+      }
     } catch (err) {
-      console.log(err);
       toast.error(err?.message);
     }
   };

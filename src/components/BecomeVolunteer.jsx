@@ -3,12 +3,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const BecomeVolunteer = ({ post }) => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const {
     _id,
     thumbnail,
@@ -62,16 +62,13 @@ const BecomeVolunteer = ({ post }) => {
 
     try {
       const { data } = await axiosSecure.post("/request", beVolunteer);
-      console.log(data);
-      toast.success("Request successfully!");
-      // navigate("/");
+      if (data.acknowledged) {
+        toast.success("Request successfully!");
+        navigate("/");
+      }
     } catch (err) {
-      console.log(err);
       toast.error(err.response?.data);
     }
-
-    console.table(post);
-    console.table(beVolunteer.NoOfVolunteers === "0");
   };
   return (
     <div>
