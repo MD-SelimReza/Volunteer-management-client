@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   return (
-    <div>
+    <div className="relative">
       <Helmet>
         <title>Home - Volunteer Management</title>
       </Helmet>

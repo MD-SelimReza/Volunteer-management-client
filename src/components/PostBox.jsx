@@ -73,7 +73,7 @@ const PostBox = () => {
     return <p className="text-red-500">Error fetching data</p>;
 
   return (
-    <div className="lg:my-20 md:my-16 my-10 lg:px-10 px-5">
+    <div className="lg:my-20 md:my-16 my-10 lg:px-10 md:px-5 px-2">
       <div className="flex mb-5 flex-col md:flex-row justify-center items-center gap-5 ">
         <p>Total Post: {countData?.total}</p>
         <div>
@@ -132,11 +132,11 @@ const PostBox = () => {
           Reset
         </button>
       </div>
-      <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 justify-center gap-x-4 gap-y-4 lg:gap-y-8 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
           <div
             key={post._id}
-            className="max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
+            className="lg:max-w-[19rem] md:max-w-sm w-[22rem] sm:max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
           >
             <div className="flex flex-col justify-between">
               <div className="px-6 py-4 h-40">

@@ -65,7 +65,7 @@ const MyPost = () => {
   return (
     <div className="my-10 px-5">
       <section className="w-full mx-auto">
-        <div className="flex flex-col justify-center items-center space-y-3">
+        <div className="flex mb-5 flex-col justify-center items-center space-y-3">
           <div className="flex items-center gap-3">
             <span className="w-5 border-b-4 border-[#DE2A4D]"></span>
 
@@ -80,14 +80,14 @@ const MyPost = () => {
           </p>
         </div>
 
-        <div className="text-lg text-right px-2 font-medium text-[#DE2A4D]">
+        <div className="text-lg text-right lg:px-2 font-medium text-[#DE2A4D]">
           Total Post :{" "}
           <span className="bg-purple-200 px-3 rounded-full">
             {posts.length}
           </span>
         </div>
 
-        <div className="flex flex-col mt-10">
+        <div className="flex flex-col mt-5">
           <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
               <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">

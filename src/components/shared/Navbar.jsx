@@ -5,6 +5,15 @@ import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const [value, setValue] = useState(true);
+
+  const handleClick = () => {
+    setValue((prevValue) => !prevValue);
+  };
+
+  const hideShow = () => {
+    setValue(false);
+  };
 
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
@@ -60,7 +69,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar max-w-6xl border-b shadow-lg lg:fixed md:fixed top-0 z-20 bg-[#1F2937] text-white">
+    <div className="navbar max-w-6xl border-b lg:fixed md:fixed z-50 top-0 shadow-lg bg-[#1F2937] text-white">
       <div className="flex-1">
         <Link to="/" className="flex gap-2 items-center">
           <img className="w-auto h-8" src="/logo.png" alt="" />
@@ -76,35 +85,48 @@ const Navbar = () => {
 
         {user && (
           <div className="dropdown dropdown-end z-50 ml-3">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar"
-            >
+            <input
+              type="checkbox"
+              id="navbarToggle"
+              checked={value}
+              onChange={handleClick}
+              className="hidden"
+            />
+            <label htmlFor="navbarToggle" className="">
               <div
-                title={user?.displayName}
-                className="lg:w-10 w-6 rounded-full"
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
               >
-                <img
-                  referrerPolicy="no-referrer"
-                  alt="Profile"
-                  src={user?.photoURL}
-                />
+                <div
+                  title={user?.displayName}
+                  className="lg:w-10 w-6 rounded-full"
+                >
+                  <img
+                    referrerPolicy="no-referrer"
+                    alt="Profile"
+                    src={user?.photoURL}
+                  />
+                </div>
               </div>
-            </div>
+            </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#080A14] rounded-box w-60"
+              className={
+                value
+                  ? "flex menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#080A14] rounded-box w-60"
+                  : "hidden"
+              }
             >
-              <li>
+              <li onClick={hideShow}>
                 <Link to="/add-volunteer-post" className="justify-between">
                   Add Volunteer Post
                 </Link>
               </li>
-              <li>
+              <li onClick={hideShow}>
                 <Link to="/manage-my-post">Manage My Post</Link>
               </li>
-              <li>
+              <li onClick={hideShow}>
                 <Link to="/my-volunteer-requested-post">
                   My Volunteer Requested Post
                 </Link>
@@ -122,14 +144,12 @@ const Navbar = () => {
         )}
 
         <label onChange={toggleTheme} className="swap swap-rotate ml-1 lg:ml-3">
-          {/* this hidden checkbox controls the state */}
           <input
             type="checkbox"
             className="theme-controller"
             value="synthwave"
           />
 
-          {/* sun icon */}
           <svg
             className="swap-off fill-current lg:size-10 size-6"
             xmlns="http://www.w3.org/2000/svg"
@@ -138,7 +158,6 @@ const Navbar = () => {
             <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
           </svg>
 
-          {/* moon icon */}
           <svg
             className="swap-on fill-current lg:size-10 size-6"
             xmlns="http://www.w3.org/2000/svg"

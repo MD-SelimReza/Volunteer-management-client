@@ -26,13 +26,28 @@ const Slider = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <Slide img={"https://i.ibb.co/rdBNX4K/slide1.jpg"} link={"/login"} />
+          <Slide
+            img={"https://i.ibb.co/rdBNX4K/slide1.jpg"}
+            link={"/all-post"}
+            text1={"Title 1"}
+            text2={"Description 1"}
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <Slide img={"https://i.ibb.co/SwjgPwD/slide4.jpg"} />
+          <Slide
+            img={"https://i.ibb.co/SwjgPwD/slide4.jpg"}
+            link={"/all-post"}
+            text1={"Title 2"}
+            text2={"Description 2"}
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <Slide img={"https://i.ibb.co/1njfR4d/slide3.png"} />
+          <Slide
+            img={"https://i.ibb.co/1njfR4d/slide3.png"}
+            link={"/all-post"}
+            text1={"Title 3"}
+            text2={"Description 3"}
+          />
         </SwiperSlide>
       </Swiper>
     </div>

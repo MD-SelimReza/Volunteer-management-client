@@ -13,7 +13,7 @@ const OurSolution = () => {
           We Can Make Solution <br /> Everything To Our <br /> Demand.
         </p>
       </div>
-      <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4 mt-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-3 lg:grid-cols-4 mt-10">
         <div className="flex flex-col shadow-xl dark:bg-gray-50">
           <div className="relative">
             <img

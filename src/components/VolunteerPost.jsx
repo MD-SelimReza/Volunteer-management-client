@@ -54,8 +54,8 @@ const VolunteerPost = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[calc(100vh-306px)] my-12">
-      <section className="w-3/4 p-2 md:p-6 mx-auto bg-white rounded-md shadow-lg border-4 border-[#FFC4AD]">
+    <div className="flex justify-center lg:px-0 md:px-0 px-5 items-center min-h-[calc(100vh-306px)] my-12">
+      <section className="lg:w-3/4 md:w-3/4 w-full p-2 md:p-6 mx-auto bg-white rounded-md shadow-lg border-4 border-[#FFC4AD]">
         <h2 className="text-3xl text-center font-bold text-[#091854] capitalize mb-10">
           Create A Post
         </h2>
