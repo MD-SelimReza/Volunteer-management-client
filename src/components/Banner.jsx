@@ -11,7 +11,9 @@ const Banner = ({ image, title, text }) => {
     >
       <div className="hero-content text-center text-neutral-content">
         <div className="max-w-md">
-          <h1 className="mb-5 text-5xl font-bold text-pink-600">{title}</h1>
+          <h1 className="mb-5 text-3xl lg:text-5xl font-bold text-pink-600">
+            {title}
+          </h1>
           <div className="flex items-center justify-center gap-3 text-[#A34DF4] text-xl">
             <Link
               to="/"

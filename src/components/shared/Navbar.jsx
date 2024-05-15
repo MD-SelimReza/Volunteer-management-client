@@ -56,6 +56,14 @@ const Navbar = () => {
       >
         Need Volunteer
       </NavLink>
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? "text-emerald-300 border-b-4 border-emerald-300" : ""
+        }
+        to="/blogs"
+      >
+        Blogs
+      </NavLink>
       {!user && (
         <NavLink
           className={({ isActive }) =>
@@ -73,18 +81,19 @@ const Navbar = () => {
       <div className="flex-1">
         <Link to="/" className="flex gap-2 items-center">
           <img className="w-auto h-8" src="/logo.png" alt="" />
-          <span className="font-bold text-lg md:text-xl lg:text-2xl text-emerald-400">
-            <span>Volunteer</span> Management
-          </span>
+          <p className="font-bold md:text-xl lg:text-2xl text-emerald-400">
+            <span className="text-[#D60057]">Volunteer</span>
+            <span className="text-[#65CFEA]"> Management</span>
+          </p>
         </Link>
       </div>
       <div className="flex-none">
-        <ul className="menu menu-horizontal px-1 text-xs md:text-sm lg:text-lg font-medium uppercase gap-3 lg:gap-5">
+        <ul className="menu menu-horizontal px-1 text-xs md:text-sm lg:text-lg font-medium uppercase gap-2 lg:gap-5">
           {navLinks}
         </ul>
 
         {user && (
-          <div className="dropdown dropdown-end z-50 ml-3">
+          <div className="dropdown dropdown-end z-50 ml-0 lg:ml-2">
             <input
               type="checkbox"
               id="navbarToggle"
@@ -143,7 +152,7 @@ const Navbar = () => {
           </div>
         )}
 
-        <label onChange={toggleTheme} className="swap swap-rotate ml-1 lg:ml-3">
+        <label onChange={toggleTheme} className="swap swap-rotate ml-0 lg:ml-3">
           <input
             type="checkbox"
             className="theme-controller"

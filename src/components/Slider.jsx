@@ -27,26 +27,29 @@ const Slider = () => {
       >
         <SwiperSlide>
           <Slide
-            img={"https://i.ibb.co/rdBNX4K/slide1.jpg"}
-            link={"/all-post"}
-            text1={"Title 1"}
-            text2={"Description 1"}
+            img="https://i.ibb.co/rdBNX4K/slide1.jpg"
+            link="/add-volunteer-post"
+            btnText="Join The Campaign"
+            text1="Lets Make The World Great Again"
+            text2="We can start by taking small steps and making small changes that can have a big impact on the world."
           />
         </SwiperSlide>
         <SwiperSlide>
           <Slide
-            img={"https://i.ibb.co/SwjgPwD/slide4.jpg"}
-            link={"/all-post"}
-            text1={"Title 2"}
-            text2={"Description 2"}
+            img="https://i.ibb.co/SwjgPwD/slide4.jpg"
+            link="/all-post"
+            text1="WE ARE WAITING FOR YOU"
+            text2="We Can Work Together For Create a Better Future."
+            btnText="Volunteers Post"
           />
         </SwiperSlide>
         <SwiperSlide>
           <Slide
-            img={"https://i.ibb.co/1njfR4d/slide3.png"}
-            link={"/all-post"}
-            text1={"Title 3"}
-            text2={"Description 3"}
+            img="https://i.ibb.co/1njfR4d/slide3.png"
+            link="/manage-my-post"
+            text1="Life without liberty, As like hell"
+            text2="Life with liberty, a paradoxical dance between freedom's promise and the chains of reality."
+            btnText="Join Ehe Campaign"
           />
         </SwiperSlide>
       </Swiper>

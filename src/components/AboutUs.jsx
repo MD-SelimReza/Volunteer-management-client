@@ -27,13 +27,26 @@ const AboutUs = () => {
           <p className="text-3xl lg:text-left text-center font-bold">
             We Can Make Our New <br /> History Together!
           </p>
-          <p className="">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi
-            facere nam architecto doloremque iure eum minus nihil saepe quam
-            officia facilis nemo labore, atque illum. Lorem ipsum dolor sit,
-            amet consectetur adipisicing elit. Nulla eveniet iure, rem aliquam
-            illo exercitationem praesentium in eum nobis quas illum cumque
-            consectetur, quae aliquid.
+          <p>
+            Embark on a journey to shape our collective destiny. Join us as we
+            rewrite history, crafting a future where unity, progress, and
+            freedom reign supreme. Together, we can create a legacy that
+            inspires generations to come.
+          </p>
+          <p>
+            Through grassroots activism, innovative initiatives, and the
+            unwavering dedication of individuals like you, we&apos;re poised to
+            make history. Our movement champions Inclusion, justice, and
+            empowerment for all. Join us in this transformer journey, where
+            every action contributes to the narrative of a brighter tomorrow.
+            Within our movement, you&apos;ll find a vibrant community driven by
+            a shared vision of positive change. From advocating for social
+            justice to championing environmental sustainability, our diverse
+            array of initiatives offers opportunities for everyone to contribute
+            their unique talents and perspectives. Together, we&apos;re not just
+            shaping history—we&apos;re forging a legacy of compassion,
+            resilience, and progress that will resonate for generations to come.
+            Join us today and be a part of something truly extraordinary.
           </p>
         </div>
       </div>
@@ -80,8 +93,8 @@ const AboutUs = () => {
                   Our campaign
                 </h1>
                 <p className="lg:px-10 md:px-5">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
-                  reprehenderit atque est suscipit quaerat consectetur?
+                  Join our campaign for a life with liberty, where we break the
+                  chains of constraint and embrace the true essence of freedom.
                 </p>
                 <button className="border border-[#DE2A4D] py-2 px-10 rounded-md uppercase font-medium hover:text-white hover:bg-[#DE2A4D]">
                   Details
@@ -101,8 +114,9 @@ const AboutUs = () => {
                   Become a volunteer
                 </h1>
                 <p className="lg:px-10 md:px-5">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
-                  reprehenderit atque est suscipit quaerat consectetur?
+                  Join us as a volunteer and be the catalyst for change, shaping
+                  a future where liberty is not just a promise but a lived
+                  reality
                 </p>
                 <button className="border border-[#DE2A4D] py-2 px-10 rounded-md uppercase font-medium hover:text-white hover:bg-[#DE2A4D]">
                   Details
@@ -122,8 +136,9 @@ const AboutUs = () => {
                   Make donation
                 </h1>
                 <p className="lg:px-10 md:px-5">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
-                  reprehenderit atque est suscipit quaerat consectetur?
+                  Your donation fuels our mission for a world where liberty
+                  thrives, empowering individuals to live freely and fully.
+                  Together, let&apos;s make a difference.
                 </p>
                 <button className="border border-[#DE2A4D] py-2 px-10 rounded-md uppercase font-medium hover:text-white hover:bg-[#DE2A4D]">
                   Details

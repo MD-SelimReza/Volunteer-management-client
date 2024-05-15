@@ -14,6 +14,7 @@ import UpdatePost from "../pages/UpdatePost";
 import PostDetails from "../pages/PostDetails";
 import { baseURL } from "../baseUrl";
 import axios from "axios";
+import Blogs from "../pages/Blogs";
 
 const router = createBrowserRouter([
   {
@@ -87,6 +88,10 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) => axios(`${baseURL}/post-details/${params.id}`),
+      },
+      {
+        path: "/blogs",
+        element: <Blogs />,
       },
     ],
   },

@@ -78,7 +78,7 @@ const PostBox = () => {
   return (
     <div className="lg:mb-16 mb-10 mt-5 lg:px-10 md:px-5 px-2">
       <div className="inline-flex w-full text-center overflow-hidden bg-white border divide-x rounded-lg dark:bg-gray-900 rtl:flex-row-reverse dark:border-gray-700 dark:divide-gray-700">
-        <div className="px-5 w-full py-2 text-xs font-medium transition-colors duration-200 sm:text-sm bg-gray-900 dark:text-gray-300">
+        <div className="px-5 lg:flex md:flex hidden w-full py-2 text-xs font-medium transition-colors duration-200 sm:text-sm bg-gray-900 dark:text-gray-300">
           Total Post: {countData?.total}
         </div>
         <div className="w-full text-center">
@@ -115,7 +115,7 @@ const PostBox = () => {
             <option value="asc">Ascending Order</option>
           </select>
         </div>
-        <div className="px-5 w-80 gap-8 flex items-center py-2 text-xs font-medium transition-colors duration-200 sm:text-sm bg-gray-900 dark:text-gray-300">
+        <div className="px-5 lg:flex md:flex hidden w-80 gap-8 flex items-center py-2 text-xs font-medium transition-colors duration-200 sm:text-sm bg-gray-900 dark:text-gray-300">
           <span>
             <TbGridDots
               onClick={() => setIsVisible(true)}
@@ -130,8 +130,8 @@ const PostBox = () => {
           </span>
         </div>
       </div>
-      <div className="flex w-full mb-5 flex-col md:flex-row justify-center items-center gap-5 ">
-        <form className="my-5 w-3/4" onSubmit={handleSearch}>
+      <div className="flex w-full mb-5 flex-col md:flex-row justify-center items-center lg:gap-5 md:gap-5">
+        <form className="my-5 lg:w-3/4 md:w-3/4" onSubmit={handleSearch}>
           <div className="flex p-1 gap-5 justify-between input input-bordered overflow-hidden rounded-lg">
             <label className="flex items-center gap-2">
               <svg
@@ -161,12 +161,33 @@ const PostBox = () => {
           </div>
         </form>
 
-        <button
-          onClick={handleReset}
-          className="px-8 py-3 rounded-lg text-xs font-medium transition-colors duration-200 sm:text-sm bg-gray-900 hover:bg-gray-700 uppercase dark:text-gray-300"
-        >
-          Reset All
-        </button>
+        <div className="flex lg:w-auto md:w-auto w-[90%]">
+          <div className="px-5 lg:hidden md:hidden w-full flex rounded-tl-lg rounded-bl-lg justify-center items-center text-xs font-medium transition-colors duration-200 sm:text-sm bg-gray-900 dark:text-gray-300">
+            Total Post: {countData?.total}
+          </div>
+
+          <button
+            onClick={handleReset}
+            className="px-8 lg:w-40 md:w-36 w-full py-3 md:rounded-lg lg:rounded-lg text-xs font-medium transition-colors duration-200 sm:text-sm bg-gray-900 hover:bg-gray-700 uppercase dark:text-gray-300"
+          >
+            Reset All
+          </button>
+
+          <div className="px-5 lg:hidden md:hidden rounded-tr-lg rounded-br-lg w-80 gap-8 flex items-center py-2 text-xs font-medium transition-colors duration-200 sm:text-sm bg-gray-900 dark:text-gray-300">
+            <span>
+              <TbGridDots
+                onClick={() => setIsVisible(true)}
+                className="size-5 text-emerald-300"
+              />
+            </span>
+            <span>
+              <MdFormatAlignJustify
+                onClick={() => setIsVisible(false)}
+                className="size-5 text-emerald-300"
+              />
+            </span>
+          </div>
+        </div>
       </div>
 
       {isVisible ? (
