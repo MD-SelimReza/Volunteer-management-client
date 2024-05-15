@@ -141,7 +141,22 @@ const MyPost = () => {
                           {post.post_title}
                         </td>
                         <td className="px-12 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                          {post.category}
+                          <p
+                            className={`px-3 py-1  ${
+                              post.category === "Education" && "text-blue-500"
+                            } ${
+                              post.category === "Healthcare" &&
+                              "text-emerald-500"
+                            } ${
+                              post.category === "Social Services" &&
+                              "text-pink-500"
+                            } ${
+                              post.category === "Animal Welfare" &&
+                              "text-purple-500"
+                            }`}
+                          >
+                            {post.category}
+                          </p>
                         </td>
                         <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                           {post.location}

@@ -33,7 +33,7 @@ const Root = () => {
         <div
           className={`scroll-to-top-button ${
             isVisible
-              ? "visible fixed z-50 right-10 border-4 rounded-full border-red-600 bottom-20 cursor-pointer text-3xl font-bold"
+              ? "visible fixed z-50 right-5 border-4 rounded-full border-red-600 bottom-10 cursor-pointer text-3xl font-bold"
               : "hidden"
           }`}
         >

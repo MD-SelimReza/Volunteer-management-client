@@ -131,18 +131,9 @@ const MyVolunteerRequestPost = () => {
                     {posts.map((post) => (
                       <tr key={post._id}>
                         <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div className="flex items-center gap-x-2">
-                            <img
-                              className="object-cover w-10 h-10 rounded-full"
-                              src={post.photo}
-                              alt=""
-                            />
-                            <div>
-                              <h2 className="font-medium text-gray-800 dark:text-white ">
-                                {post.volunteer_name}
-                              </h2>
-                            </div>
-                          </div>
+                          <p className="font-medium text-gray-800 dark:text-white ">
+                            {post.volunteer_name}
+                          </p>
                         </td>
                         <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                           <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">

@@ -53,7 +53,13 @@ const Volunteer = () => {
               />
             </div>
             <div className="flex flex-col flex-1 pt-4">
-              <p className="text-lg tracking-wider uppercase hover:underline text-violet-600">
+              <p
+                className={`px-3 py-1  ${
+                  post.category === "Education" && "text-blue-500"
+                } ${post.category === "Healthcare" && "text-emerald-600"} ${
+                  post.category === "Social Services" && "text-pink-500"
+                } ${post.category === "Animal Welfare" && "text-purple-500"}`}
+              >
                 {post.category}
               </p>
               <h3 className="flex-1 py-2 text-lg font-semibold leading-snug">
