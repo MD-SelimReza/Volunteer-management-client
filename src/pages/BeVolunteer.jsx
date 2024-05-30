@@ -10,7 +10,7 @@ const BeVolunteer = () => {
   return (
     <div>
       <Helmet>
-        <title>Be A Volunteer - Volunteer Management</title>
+        <title>Be A Volunteer - VolunteerVision</title>
       </Helmet>
       <Banner image={img} title="Be a Volunteer" text="Be a Volunteer" />
       <BecomeVolunteer post={data} />

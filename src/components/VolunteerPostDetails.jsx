@@ -16,7 +16,7 @@ const VolunteerPostDetails = ({ post }) => {
   return (
     <div className="w-full my-10 lg:px-10 px-5 ">
       <Helmet>
-        <title>{post_title} - Volunteer Management</title>
+        <title>{post_title} - VolunteerVision</title>
       </Helmet>
       <div className="max-w-lg mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
         <img

@@ -19,7 +19,7 @@ const Footer = () => {
           />
           <p className="text-xl">
             <span className="text-[#D60057]">Volunteer</span>
-            <span className="text-[#65CFEA]"> Management</span> Ltd.
+            <span className="text-[#65CFEA]">Vision</span> Ltd.
             <br />
             Providing reliable services since 2020
           </p>
@@ -88,7 +88,7 @@ const Footer = () => {
         <aside>
           <p>
             Copyright © 2024 - All right reserved by{" "}
-            <span className="text-[#DE294C]">Volunteer Management</span> Ltd
+            <span className="text-[#DE294C]">VolunteerVision</span> Ltd
           </p>
         </aside>
       </footer>

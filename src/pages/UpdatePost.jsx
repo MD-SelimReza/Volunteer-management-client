@@ -11,7 +11,7 @@ const UpdatePost = () => {
   return (
     <div>
       <Helmet>
-        <title>Update Post - Volunteer Management</title>
+        <title>Update Post - VolunteerVision</title>
       </Helmet>
       <Banner
         image={img}

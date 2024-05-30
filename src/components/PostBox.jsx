@@ -201,7 +201,7 @@ const PostBox = () => {
                 <div className="px-6 py-4 h-40">
                   <div className="flex justify-between items-center mb-3">
                     <p
-                      className={`px-3 py-1  ${
+                      className={`py-1  ${
                         post.category === "Education" && "text-blue-500"
                       } ${
                         post.category === "Healthcare" && "text-emerald-500"

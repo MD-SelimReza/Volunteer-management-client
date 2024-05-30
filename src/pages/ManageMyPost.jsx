@@ -9,7 +9,7 @@ const ManageMyPost = () => {
   return (
     <div>
       <Helmet>
-        <title>Manage Post - Volunteer Management</title>
+        <title>Manage Post - VolunteerVision</title>
       </Helmet>
       <Banner
         image={img}

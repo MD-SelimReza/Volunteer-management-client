@@ -8,7 +8,7 @@ const MyVolunteerRequestedPost = () => {
   return (
     <div>
       <Helmet>
-        <title>Volunteer Request Post - Volunteer Management</title>
+        <title>Volunteer Request Post - VolunteerVision</title>
       </Helmet>
       <Banner
         image={img}

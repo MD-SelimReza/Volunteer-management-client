@@ -75,7 +75,7 @@ const Login = () => {
   return (
     <div className="lg:max-w-md max-w-sm my-10 p-6 m-auto mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800">
       <Helmet>
-        <title>Login - Volunteer Management</title>
+        <title>Login - VolunteerVision</title>
       </Helmet>
       <div className="flex flex-col items-center justify-center mx-auto">
         <img className="size-16" src="/logo.png" alt="" />

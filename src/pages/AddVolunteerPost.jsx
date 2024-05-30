@@ -9,7 +9,7 @@ const AddVolunteerPost = () => {
   return (
     <div>
       <Helmet>
-        <title>Add Post - Volunteer Management</title>
+        <title>Add Post - VolunteerVision</title>
       </Helmet>
       <Banner image={img} title="Create A post" text="Add Volunteers Post" />
       <VolunteerPost />
